@@ -3,7 +3,11 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 
+import sessionRoutes from "./routes/sessions.js";
+
 const app = express();
+
+app.use("/sessions", sessionRoutes);
 
 app.use(bodyParser.json({ limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
