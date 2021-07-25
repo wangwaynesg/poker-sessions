@@ -15,11 +15,10 @@ const sessionSchema = mongoose.Schema({
     },
     players: [{
         playerName: String,
-        playerBuyIns: Number
-    }],
-    logs: [
-        { type: String, required: true }
-    ]
+        playerBuyIns: Number,
+        playerChips: Number,
+        playerProfit: Number
+    }]
 });
 
 const Session = mongoose.model("Session", sessionSchema);
