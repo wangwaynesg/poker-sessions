@@ -137,7 +137,7 @@ const CreateSession = () => {
                                         <input className="form-control" name="playerChips" value={x.playerChips} onChange={(e) => handlePlayerInputChange(e, i)}/>
                                     </td>
                                     <td>
-                                        <div style={{padding: "15%"}}>
+                                        <div className="form-control">
                                             {x.playerProfit !== Number(0).toFixed(2) ? (x.playerProfit < 0 ? "-$" + Math.abs(x.playerProfit) : "$" + x.playerProfit) : "-"}
                                         </div>
                                     </td>
@@ -154,8 +154,8 @@ const CreateSession = () => {
                             <td></td>
                             <td></td>
                             <td>
-                                <div style={{padding: "15%"}}>
-                                    {playerList.length === 0 ? "" : (netProfit !== Number(0).toFixed(2) ? (netProfit < 0 ? "-$" + Math.abs(netProfit) : ("$" + netProfit)) : "-")}
+                                <div className="form-control">
+                                    {playerList.length === 0 ? "-" : (netProfit !== Number(0).toFixed(2) ? (netProfit < 0 ? "-$" + Math.abs(netProfit) : ("$" + netProfit)) : "-")}
                                 </div>
                             </td>
                         </tr>
