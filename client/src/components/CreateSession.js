@@ -37,10 +37,11 @@ const CreateSession = () => {
 
     const handlePlayerRemoveClick = (index, e) => {
         e.preventDefault();
+        const temp = playerList[index]["playerProfit"];
         const list = [...playerList];
         list.splice(index, 1);
         setPlayerList(list);
-        updateNetProfit();
+        setNetProfit(netProfit - temp);
     };
 
     const handlePlayerAddClick = (e) => {
@@ -51,7 +52,7 @@ const CreateSession = () => {
             playerChips: "",
             playerProfit: -sessionData.buyInAmount
         }]);
-        updateNetProfit();
+        setNetProfit(netProfit - 20);
     };
 
     const onSubmit = (e) => {
