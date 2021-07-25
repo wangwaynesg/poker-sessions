@@ -62,8 +62,19 @@ const CreateSession = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        console.log(sessionData);
-        dispatch(createSession(sessionData));
+        if (playerList.length === 0) {
+            alert("you never even put any players smlj wdym cb don't try to crash my website hor");
+            return;
+        }
+
+        if (netProfit !== 0) {
+            alert("Money doesn't check out leh! Net profits not zero!");
+            return;
+        }
+
+        if (window.confirm("Are you done with the final ledger/tabulations?")) {
+            dispatch(createSession(sessionData));
+        }
     };
 
     return (
@@ -128,7 +139,7 @@ const CreateSession = () => {
                                         <input name="playerChips" value={x.playerChips} onChange={(e) => handlePlayerInputChange(e, i)}/>
                                     </td>
                                     <td>
-                                        {x.playerProfit !== Number(0).toFixed(2) ? "$" + x.playerProfit : "-"}
+                                        {x.playerProfit !== Number(0).toFixed(2) ? (x.playerProfit < 0 ? "-$" + Math.abs(x.playerProfit) : "$" + x.playerProfit) : "-"}
                                     </td>
                                     <td>
                                         <button onClick={(e) => handlePlayerRemoveClick(i, e)}>Remove</button>
@@ -142,7 +153,7 @@ const CreateSession = () => {
                             </td>
                             <td></td>
                             <td></td>
-                            <td>{playerList.length === 0 ? "" : (netProfit !== Number(0).toFixed(2) ? ("$" + netProfit) : "-")}</td>
+                            <td>{playerList.length === 0 ? "" : (netProfit !== Number(0).toFixed(2) ? (netProfit < 0 ? "-$" + Math.abs(netProfit) : ("$" + netProfit)) : "-")}</td>
                         </tr>
                         
                     </tbody>

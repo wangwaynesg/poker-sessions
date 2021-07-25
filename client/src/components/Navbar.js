@@ -10,6 +10,9 @@ const Navbar = () => {
                     <li className="navbar-item">
                         <Link to="/create" className="nav-link">New session</Link>
                     </li>
+                    <li className="navbar-item">
+                        <Link to="/about" className="nav-link">About</Link>
+                    </li>
                 </ul>
             </div>
         </nav>

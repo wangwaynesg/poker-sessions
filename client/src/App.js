@@ -6,9 +6,10 @@ import { useDispatch } from "react-redux";
 import { getSessions } from "./actions/sessions";
 
 import Navbar from "./components/Navbar";
-import SessionList from "./components/Sessions/SessionList";
+import SessionList from "./components/SessionList";
 import CreateSession from "./components/CreateSession";
-import EditSession from "./components/EditSession";
+import About from "./components/About";
+import ViewSession from "./components/ViewSession";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -23,7 +24,8 @@ const App = () => {
 
             <Route path="/" exact component={SessionList} />
             <Route path="/create" component={CreateSession} />
-            <Route path="/sessions/:id" component={EditSession} />
+            <Route path="/about" component={About} />
+            <Route path="/sessions/:id" component={ViewSession}/>
         </Router>
     );
 }

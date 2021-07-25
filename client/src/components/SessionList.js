@@ -7,11 +7,11 @@ const SessionList = () => {
 
     return (
         <div>
-            <h3>Live sessions</h3>
             <table className="table">
                 <thead className="thead-light">
                     <tr>
                         <th>Session name</th>
+                        <th>Players</th>
                         <th>Date</th>
                     </tr>
                 </thead>

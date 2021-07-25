@@ -10,21 +10,11 @@ export const getSessions = () => async (dispatch) => {
     }
 }
 
-export const fetchSession = (id) => async (dispatch) => {
-    try {
-        const { data } = await api.fetchSession(id)
-        
-        dispatch({ type: "FETCH", payload: data })
-    } catch (error) {
-        console.log(error.message);
-    }
-}
-
 export const createSession = (session) => async (dispatch) => {
     try {
-        const { data } = await api.createSession(session)
+        const { data } = await api.createSession(session);
         
-        dispatch({ type: "CREATE", payload: data })
+        dispatch({ type: "CREATE", payload: data });
     } catch (error) {
         console.log(error.message);
     }
