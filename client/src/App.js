@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { getSessions } from "./actions/sessions";
 
-import Navbar from "./components/Navbar";
+import NavigationBar from "./components/NavigationBar";
 import SessionList from "./components/SessionList";
 import CreateSession from "./components/CreateSession";
 import About from "./components/About";
@@ -20,7 +20,7 @@ const App = () => {
 
     return (
         <Router>
-            <Navbar />
+            <NavigationBar />
 
             <Route path="/" exact component={SessionList} />
             <Route path="/create" component={CreateSession} />

@@ -97,7 +97,6 @@ const CreateSession = () => {
                     <input type="text"
                         required 
                         className="form-control" 
-                        // placeholder="How much is one buy-in?"
                         value={sessionData.buyInAmount} 
                         onChange={(e) => setSessionData({ ...sessionData, buyInAmount:e.target.value })}
                     />
@@ -108,7 +107,6 @@ const CreateSession = () => {
                     <input type="text"
                         required 
                         className="form-control" 
-                        // placeholder="How many chips do you get with one buy-in?"
                         value={sessionData.chipsPerBuyIn} 
                         onChange={(e) => setSessionData({ ...sessionData, chipsPerBuyIn:e.target.value })}
                     />
@@ -130,30 +128,36 @@ const CreateSession = () => {
                             return (
                                 <tr key={i}>
                                     <td>
-                                        <input name="playerName" value={x.playerName} onChange={(e) => handlePlayerInputChange(e, i)}/>
+                                        <input className="form-control" name="playerName" value={x.playerName} onChange={(e) => handlePlayerInputChange(e, i)}/>
                                     </td>
                                     <td>
-                                        <input name="playerBuyIns" value={x.playerBuyIns} onChange={(e) => handlePlayerInputChange(e, i)}/>
+                                        <input className="form-control" name="playerBuyIns" value={x.playerBuyIns} onChange={(e) => handlePlayerInputChange(e, i)}/>
                                     </td>
                                     <td>
-                                        <input name="playerChips" value={x.playerChips} onChange={(e) => handlePlayerInputChange(e, i)}/>
+                                        <input className="form-control" name="playerChips" value={x.playerChips} onChange={(e) => handlePlayerInputChange(e, i)}/>
                                     </td>
                                     <td>
-                                        {x.playerProfit !== Number(0).toFixed(2) ? (x.playerProfit < 0 ? "-$" + Math.abs(x.playerProfit) : "$" + x.playerProfit) : "-"}
+                                        <div style={{padding: "15%"}}>
+                                            {x.playerProfit !== Number(0).toFixed(2) ? (x.playerProfit < 0 ? "-$" + Math.abs(x.playerProfit) : "$" + x.playerProfit) : "-"}
+                                        </div>
                                     </td>
                                     <td>
-                                        <button onClick={(e) => handlePlayerRemoveClick(i, e)}>Remove</button>
+                                        <button className="form-control" onClick={(e) => handlePlayerRemoveClick(i, e)}>Remove</button>
                                     </td>
                                 </tr>
                             );
                         })}
                         <tr>
                             <td>
-                                <button onClick={(e) => handlePlayerAddClick(e)}>Add player</button>
+                                <button className="form-control" onClick={(e) => handlePlayerAddClick(e)}>Add player</button>
                             </td>
                             <td></td>
                             <td></td>
-                            <td>{playerList.length === 0 ? "" : (netProfit !== Number(0).toFixed(2) ? (netProfit < 0 ? "-$" + Math.abs(netProfit) : ("$" + netProfit)) : "-")}</td>
+                            <td>
+                                <div style={{padding: "15%"}}>
+                                    {playerList.length === 0 ? "" : (netProfit !== Number(0).toFixed(2) ? (netProfit < 0 ? "-$" + Math.abs(netProfit) : ("$" + netProfit)) : "-")}
+                                </div>
+                            </td>
                         </tr>
                         
                     </tbody>
