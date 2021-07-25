@@ -1,18 +1,25 @@
 import mongoose from "mongoose";
 
 const sessionSchema = mongoose.Schema({
-    name: String,
+    sessionName: {
+        type: String,
+        trim: true,
+        required: true
+    },
     buyInAmount: Number,
     chipsPerBuyIn: Number,
-    date: {
+    sessionDate: {
         type: Date,
+        required: true,
         default: new Date()
     },
     players: [{
-        name: String,
-        buyIns: Number
+        playerName: String,
+        playerBuyIns: Number
     }],
-    logs: [String]
+    logs: [
+        { type: String, required: true }
+    ]
 });
 
 const Session = mongoose.model("Session", sessionSchema);
