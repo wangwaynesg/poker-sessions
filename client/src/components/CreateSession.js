@@ -8,8 +8,8 @@ const CreateSession = () => {
 
     const [sessionData, setSessionData] = useState({
         sessionName: "",
-        buyInAmount: 20,
-        chipsPerBuyIn: 200,
+        buyInAmount: Number(20),
+        chipsPerBuyIn: Number(200),
         players: [],
     });
 
@@ -22,16 +22,16 @@ const CreateSession = () => {
         const list = [...playerList];
         playerList[index][name] = value;
 
-        playerList[index]["playerProfit"] = sessionData.buyInAmount * (playerList[index]["playerChips"] / sessionData.chipsPerBuyIn - playerList[index]["playerBuyIns"]);
+        playerList[index]["playerProfit"] = Number(sessionData.buyInAmount * (playerList[index]["playerChips"] / sessionData.chipsPerBuyIn - playerList[index]["playerBuyIns"])).toFixed(2);
         
         setPlayerList(list);
         setSessionData({ ...sessionData, players:list });
 
-        var tempProfit = 0;
+        var tempProfit = Number(0);
         list.forEach(x => {
-            tempProfit = tempProfit + x.playerProfit;
+            tempProfit = Number(tempProfit) + Number(x.playerProfit);
         })
-        setNetProfit(tempProfit);
+        setNetProfit(tempProfit.toFixed(2));
     };
 
     const handlePlayerRemoveClick = (index, e) => {
@@ -41,7 +41,7 @@ const CreateSession = () => {
         list.splice(index, 1);
         setPlayerList(list);
         setSessionData({ ...sessionData, players:list });
-        setNetProfit(netProfit - temp);
+        setNetProfit((Number(netProfit) - Number(temp)).toFixed(2));
     };
 
     const handlePlayerAddClick = (e) => {
@@ -56,7 +56,7 @@ const CreateSession = () => {
 
         setPlayerList(list);
         setSessionData({ ...sessionData, players:list });
-        setNetProfit(netProfit - sessionData.buyInAmount);
+        setNetProfit((Number(netProfit) - Number(sessionData.buyInAmount)).toFixed(2));
     };
 
     const onSubmit = (e) => {
@@ -128,7 +128,7 @@ const CreateSession = () => {
                                         <input name="playerChips" value={x.playerChips} onChange={(e) => handlePlayerInputChange(e, i)}/>
                                     </td>
                                     <td>
-                                        {x.playerProfit ? "$" + x.playerProfit : "-"}
+                                        {x.playerProfit !== Number(0).toFixed(2) ? "$" + x.playerProfit : "-"}
                                     </td>
                                     <td>
                                         <button onClick={(e) => handlePlayerRemoveClick(i, e)}>Remove</button>
@@ -142,7 +142,7 @@ const CreateSession = () => {
                             </td>
                             <td></td>
                             <td></td>
-                            <td>{playerList.length === 0 ? "" : "$" + netProfit}</td>
+                            <td>{playerList.length === 0 ? "" : (netProfit !== Number(0).toFixed(2) ? ("$" + netProfit) : "-")}</td>
                         </tr>
                         
                     </tbody>

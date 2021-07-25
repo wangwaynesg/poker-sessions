@@ -5,8 +5,6 @@ import Session from "./Session";
 const SessionList = () => {
     const sessions = useSelector((state) => state.sessions);
 
-    console.log(sessions);
-
     return (
         <div>
             <h3>Live sessions</h3>
