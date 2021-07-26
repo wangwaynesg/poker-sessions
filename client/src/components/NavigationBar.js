@@ -12,10 +12,10 @@ const NavigationBar = () => {
             <Navbar.Toggle />
             <Navbar.Collapse>
                 <Nav>
-                    <Nav.Link to="/create" className="nav-link">New session
-                    </Nav.Link>
-                    <Nav.Link to="/about" className="nav-link">About
-                    </Nav.Link>
+                    <Link to="/create" className="nav-link">New session
+                    </Link>
+                    <Link to="/about" className="nav-link">About
+                    </Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

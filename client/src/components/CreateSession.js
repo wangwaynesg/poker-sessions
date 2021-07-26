@@ -82,93 +82,101 @@ const CreateSession = () => {
 
     return (
         <div> 
-            <h3>New session</h3>
             <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <label>Session name:</label>
-                    <input type="text"
-                        required 
-                        className="form-control" 
-                        placeholder="Boon Lay with the boys"
-                        value={sessionData.sessionName} 
-                        onChange={(e) => setSessionData({ ...sessionData, sessionName: e.target.value })}
-                    />
+                <div style={{padding: "1%"}}>
+                    <h3>New session</h3>
+
+                    <div className="form-group">
+                        <label>Session name:</label>
+                        <input type="text"
+                            required 
+                            className="form-control" 
+                            placeholder="Boon Lay with the boys"
+                            value={sessionData.sessionName} 
+                            onChange={(e) => setSessionData({ ...sessionData, sessionName: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Buy-in amount (SGD):</label>
+                        <input type="text"
+                            required 
+                            className="form-control" 
+                            value={sessionData.buyInAmount} 
+                            onChange={(e) => setSessionData({ ...sessionData, buyInAmount:e.target.value })}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Number of chips per buy-in:</label>
+                        <input type="text"
+                            required 
+                            className="form-control" 
+                            value={sessionData.chipsPerBuyIn} 
+                            onChange={(e) => setSessionData({ ...sessionData, chipsPerBuyIn:e.target.value })}
+                        />
+                    </div>
                 </div>
 
-                <div className="form-group">
-                    <label>Buy-in amount (SGD):</label>
-                    <input type="text"
-                        required 
-                        className="form-control" 
-                        value={sessionData.buyInAmount} 
-                        onChange={(e) => setSessionData({ ...sessionData, buyInAmount:e.target.value })}
-                    />
+                <div style={{padding: "1%"}}>
+                    <h3>Players</h3>
+                    <table className="table">
+                        <thead className="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Buy-ins</th>
+                                <th>Cash-out chips</th>
+                                <th>Profit</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {playerList.map((x, i) => {
+                                return (
+                                    <tr key={i}>
+                                        <td>
+                                            <input className="form-control" name="playerName" value={x.playerName} onChange={(e) => handlePlayerInputChange(e, i)}/>
+                                        </td>
+                                        <td>
+                                            <input className="form-control" name="playerBuyIns" value={x.playerBuyIns} onChange={(e) => handlePlayerInputChange(e, i)}/>
+                                        </td>
+                                        <td>
+                                            <input className="form-control" name="playerChips" value={x.playerChips} onChange={(e) => handlePlayerInputChange(e, i)}/>
+                                        </td>
+                                        <td>
+                                            <div className="form-control">
+                                                {x.playerProfit !== Number(0).toFixed(2) ? (x.playerProfit < 0 ? "-$" + Math.abs(x.playerProfit) : "$" + x.playerProfit) : "-"}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button className="form-control" onClick={(e) => handlePlayerRemoveClick(i, e)}>Remove</button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                            <tr>
+                                <td>
+                                    <button className="form-control" onClick={(e) => handlePlayerAddClick(e)}>Add player</button>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <div className="form-control">
+                                        {playerList.length === 0 ? "-" : (netProfit !== Number(0).toFixed(2) ? (netProfit < 0 ? "-$" + Math.abs(netProfit) : ("$" + netProfit)) : "-")}
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
                 </div>
-
-                <div className="form-group">
-                    <label>Number of chips per buy-in:</label>
-                    <input type="text"
-                        required 
-                        className="form-control" 
-                        value={sessionData.chipsPerBuyIn} 
-                        onChange={(e) => setSessionData({ ...sessionData, chipsPerBuyIn:e.target.value })}
-                    />
+                
+                <div className="form-group" style={{padding: "1%"}}>
+                    <input type="submit" className="btn btn-primary" value="Save"/>
                 </div>
+                
 
-                <h3>Players</h3>
-                <table className="table">
-                    <thead className="thead-light">
-                        <tr>
-                            <th>Name</th>
-                            <th>Buy-ins</th>
-                            <th>Cash-out chips</th>
-                            <th>Profit</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {playerList.map((x, i) => {
-                            return (
-                                <tr key={i}>
-                                    <td>
-                                        <input className="form-control" name="playerName" value={x.playerName} onChange={(e) => handlePlayerInputChange(e, i)}/>
-                                    </td>
-                                    <td>
-                                        <input className="form-control" name="playerBuyIns" value={x.playerBuyIns} onChange={(e) => handlePlayerInputChange(e, i)}/>
-                                    </td>
-                                    <td>
-                                        <input className="form-control" name="playerChips" value={x.playerChips} onChange={(e) => handlePlayerInputChange(e, i)}/>
-                                    </td>
-                                    <td>
-                                        <div className="form-control">
-                                            {x.playerProfit !== Number(0).toFixed(2) ? (x.playerProfit < 0 ? "-$" + Math.abs(x.playerProfit) : "$" + x.playerProfit) : "-"}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button className="form-control" onClick={(e) => handlePlayerRemoveClick(i, e)}>Remove</button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                        <tr>
-                            <td>
-                                <button className="form-control" onClick={(e) => handlePlayerAddClick(e)}>Add player</button>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div className="form-control">
-                                    {playerList.length === 0 ? "-" : (netProfit !== Number(0).toFixed(2) ? (netProfit < 0 ? "-$" + Math.abs(netProfit) : ("$" + netProfit)) : "-")}
-                                </div>
-                            </td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-
-                <div className="form-group">
-                    <input type="submit" className="btn btn-primary" value="OK"/>
-                </div>
+                
             </form>
         </div>
     );
