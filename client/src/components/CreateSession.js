@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 import { createSession } from "../actions/sessions";
 
 const CreateSession = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [sessionData, setSessionData] = useState({
         sessionName: "",
@@ -67,7 +69,7 @@ const CreateSession = () => {
             return;
         }
 
-        if (netProfit !== 0) {
+        if (Number(netProfit) !== 0) {
             alert("Money doesn't check out leh! Net profits not zero!");
             return;
         }
@@ -75,6 +77,7 @@ const CreateSession = () => {
         if (window.confirm("Are you done with the final ledger/tabulations?")) {
             dispatch(createSession(sessionData));
         }
+        history.push("/");
     };
 
     return (
