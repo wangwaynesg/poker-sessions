@@ -16,7 +16,7 @@ const SessionList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {sessions.map((session) => (
+                    {sessions.slice().reverse().map((session) => (
                         <Session key={session._id} session={session}/>
                     ))}
                 </tbody>
