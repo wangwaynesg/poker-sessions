@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { getSessions } from "./actions/sessions";
+import { getLikes } from "./actions/likes";
 
 import NavigationBar from "./components/NavigationBar";
 import SessionList from "./components/SessionList";
@@ -16,6 +17,7 @@ const App = () => {
 
     useEffect(() => {
         dispatch(getSessions());
+        dispatch(getLikes());
     }, [dispatch]);
 
     return (
