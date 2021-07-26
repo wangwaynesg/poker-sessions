@@ -1,13 +1,16 @@
 import express from "express";
-import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 
+import sessionRoutes from "./routes/sessions.js";
+
 const app = express();
 
-app.use(bodyParser.json({ limit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use("/sessions", sessionRoutes);
 
 const CONNECTION_URL = "mongodb+srv://poker-sessions:poker-sessions@cluster0.2ntjc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
